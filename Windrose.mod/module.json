@@ -1,0 +1,298 @@
+{
+  "id": "windrose",
+  "name": "Windrose Dedicated Server",
+  "version": "1.0.0",
+  "author": "Shenniko ",
+  "description": "Installs, configures, starts, monitors, and backs up Windrose dedicated servers.",
+  "url": "https://github.com/WindowsGSH/WindowsGSH.Windrose",
+  "homepage": "https://playwindrose.com/",
+  "repository": "https://github.com/WindowsGSH/WindowsGSH.Windrose",
+  "sourceUrl": "https://github.com/WindowsGSH/WindowsGSH.Windrose",
+  "color": "#1E8449",
+  "moduleApiVersion": "1.0",
+  "minimumWindowsGshVersion": "0.1.0",
+  "type": "csharp",
+  "entry": "WindowsGSH.Modules.Windrose.WindroseModule",
+  "steam": {
+    "appId": "4129620",
+    "anonymous": true,
+    "validate": true
+  },
+  "platform": "windows",
+  "source": "https://playwindrose.com/dedicated-server-guide/",
+  "entryPoints": {
+    "start": "R5/Binaries/Win64/WindroseServer-Win64-Shipping.exe",
+    "processNames": [
+      "WindroseServer-Win64-Shipping"
+    ]
+  },
+  "runtime": {
+    "allowsEmbeddedConsole": true,
+    "portIncrements": 2,
+    "queryProtocol": "process",
+    "defaultArguments": "-MULTIHOME={network.proxyAddress} -PORT={network.directConnectionPort} -QUERYPORT={network.queryPort} -log"
+  },
+  "capabilities": {
+    "directConnection": true
+  },
+  "configFields": [
+    {
+      "key": "server.name",
+      "label": "Server Name",
+      "type": "Text",
+      "defaultValue": "",
+      "required": true,
+      "description": "Shown in ServerDescription.json as ServerName."
+    },
+    {
+      "key": "server.inviteCode",
+      "label": "Invite Code",
+      "type": "Text",
+      "defaultValue": "",
+      "description": "At least 6 characters. Leave empty and let Windrose generate one on first launch."
+    },
+    {
+      "key": "server.passwordProtected",
+      "label": "Password Protected",
+      "type": "Boolean",
+      "defaultValue": false
+    },
+    {
+      "key": "server.password",
+      "label": "Password",
+      "type": "Password",
+      "defaultValue": ""
+    },
+    {
+      "key": "server.maxPlayers",
+      "label": "Max Players",
+      "type": "Number",
+      "defaultValue": 4,
+      "required": true,
+      "minimum": 1,
+      "maximum": 10
+    },
+    {
+      "key": "server.region",
+      "label": "Connection Region",
+      "type": "Select",
+      "defaultValue": "EU",
+      "description": "Leave empty in config for automatic region selection.",
+      "options": [ "Auto", "SEA", "CIS", "EU" ]
+    },
+    {
+      "key": "server.worldIslandId",
+      "label": "World Island ID",
+      "type": "Text",
+      "defaultValue": "",
+      "description": "Must match a generated WorldDescription.json islandId. Leave blank until Windrose creates a world if needed."
+    },
+    {
+      "key": "world.name",
+      "label": "World Name",
+      "type": "Text",
+      "defaultValue": "",
+      "group": "World",
+      "description": "Written to WorldDescription.json after Windrose creates the world folder."
+    },
+    {
+      "key": "world.presetType",
+      "label": "World Preset",
+      "type": "Select",
+      "defaultValue": "Medium",
+      "options": [ "Easy", "Medium", "Hard" ],
+      "group": "World",
+      "description": "Written to WorldPresetType after WorldDescription.json exists."
+    },
+    {
+      "key": "world.sharedQuests",
+      "label": "Shared Quests",
+      "type": "Boolean",
+      "defaultValue": true,
+      "group": "World"
+    },
+    {
+      "key": "world.easyExplore",
+      "label": "Easy Explore",
+      "type": "Boolean",
+      "defaultValue": false,
+      "group": "World"
+    },
+    {
+      "key": "world.mobHealthMultiplier",
+      "label": "Mob Health",
+      "type": "Number",
+      "defaultValue": 1.0,
+      "minimum": 0.2,
+      "maximum": 5.0,
+      "group": "World"
+    },
+    {
+      "key": "world.mobDamageMultiplier",
+      "label": "Mob Damage",
+      "type": "Number",
+      "defaultValue": 1.0,
+      "minimum": 0.2,
+      "maximum": 5.0,
+      "group": "World"
+    },
+    {
+      "key": "world.shipsHealthMultiplier",
+      "label": "Ship Health",
+      "type": "Number",
+      "defaultValue": 1.0,
+      "minimum": 0.4,
+      "maximum": 5.0,
+      "group": "World"
+    },
+    {
+      "key": "world.shipsDamageMultiplier",
+      "label": "Ship Damage",
+      "type": "Number",
+      "defaultValue": 1.0,
+      "minimum": 0.2,
+      "maximum": 2.5,
+      "group": "World"
+    },
+    {
+      "key": "world.boardingDifficultyMultiplier",
+      "label": "Boarding Difficulty",
+      "type": "Number",
+      "defaultValue": 1.0,
+      "minimum": 0.2,
+      "maximum": 5.0,
+      "group": "World"
+    },
+    {
+      "key": "world.coopStatsCorrectionModifier",
+      "label": "Co-op Stats Correction",
+      "type": "Number",
+      "defaultValue": 1.0,
+      "minimum": 0.0,
+      "maximum": 2.0,
+      "group": "World"
+    },
+    {
+      "key": "world.coopShipStatsCorrectionModifier",
+      "label": "Co-op Ship Correction",
+      "type": "Number",
+      "defaultValue": 0.0,
+      "minimum": 0.0,
+      "maximum": 2.0,
+      "group": "World"
+    },
+    {
+      "key": "world.combatDifficulty",
+      "label": "Combat Difficulty",
+      "type": "Select",
+      "defaultValue": "Normal",
+      "options": [ "Easy", "Normal", "Hard" ],
+      "group": "World"
+    },
+    {
+      "key": "network.useDirectConnection",
+      "label": "Use Direct Connection",
+      "type": "Boolean",
+      "defaultValue": false
+    },
+    {
+      "key": "network.directConnectionPort",
+      "label": "Direct Connection Port",
+      "type": "Port",
+      "defaultValue": 7777,
+      "description": "Must be available for TCP and UDP when direct connection is enabled."
+    },
+    {
+      "key": "network.queryPort",
+      "label": "Query Port",
+      "type": "Port",
+      "defaultValue": 7778
+    },
+    {
+      "key": "network.proxyAddress",
+      "label": "Proxy Address",
+      "type": "Text",
+      "defaultValue": "0.0.0.0",
+      "description": "Use to select a specific network interface."
+    },
+    {
+      "key": "server.additionalArguments",
+      "label": "Additional Arguments",
+      "type": "Text",
+      "defaultValue": ""
+    },
+    {
+      "key": "recovery.autoLoadLatestBackup",
+      "label": "Auto-load Latest Backup If Broken",
+      "type": "Boolean",
+      "defaultValue": true
+    }
+  ],
+  "configFiles": [
+    "R5/ServerDescription.json",
+    "R5/Saved/SaveProfiles/Default/**/WorldDescription.json"
+  ],
+  "backupTargets": [
+    {
+      "key": "server-description",
+      "label": "Server description",
+      "path": "R5/ServerDescription.json",
+      "type": "file"
+    },
+    {
+      "key": "save-profiles",
+      "label": "Save profiles",
+      "path": "R5/Saved/SaveProfiles",
+      "type": "directory"
+    },
+    {
+      "key": "config",
+      "label": "Saved config",
+      "path": "R5/Saved/Config",
+      "type": "directory"
+    }
+  ],
+  "addons": [
+    {
+      "id": "windrose-plus",
+      "name": "WindrosePlus",
+      "description": "Manual addon integration. Install WindrosePlus yourself, then enable this to read status and use file-spool RCON.",
+      "downloadUrl": "https://github.com/HumanGenome/WindrosePlus/releases/latest",
+      "installInstructions": "Download WindrosePlus.zip from the latest release, extract it into this Windrose server folder, then run install.ps1 from that folder. Restart WindowsGSH or reopen CFG after installing; the module will detect the files and show Enable.",
+      "capabilitiesAdded": {
+        "query": true,
+        "rcon": true
+      },
+      "configFields": [
+        {
+          "key": "rcon.enabled",
+          "label": "Enable RCON",
+          "type": "Boolean",
+          "defaultValue": false
+        },
+        {
+          "key": "rcon.password",
+          "label": "RCON Password",
+          "type": "Password",
+          "defaultValue": "change-me"
+        },
+        {
+          "key": "query.intervalMs",
+          "label": "Query Interval",
+          "type": "Number",
+          "defaultValue": 5000,
+          "minimum": 1000,
+          "maximum": 60000
+        },
+        {
+          "key": "query.idleIntervalMs",
+          "label": "Idle Query Interval",
+          "type": "Number",
+          "defaultValue": 30000,
+          "minimum": 5000,
+          "maximum": 300000
+        }
+      ]
+    }
+  ]
+}
