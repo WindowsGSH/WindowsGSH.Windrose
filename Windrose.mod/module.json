@@ -40,7 +40,7 @@
       "key": "server.name",
       "label": "Server Name",
       "type": "Text",
-      "defaultValue": "",
+      "defaultValue": "Windrose Dedicated Server",
       "required": true,
       "description": "Shown in ServerDescription.json as ServerName."
     },
